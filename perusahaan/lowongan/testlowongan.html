@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lowongan Pekerjaan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <!-- Wrapper -->
+     
+    <div class="flex flex-col md:flex-row">
+        <!-- Sidebar -->
+        <div class="w-full md:w-64 bg-white border-r min-h-screen">
+            <div class="p-6">
+                <h1 class="text-xl font-bold text-blue-600">Dasbor</h1>
+            </div>
+            <nav class="mt-6">
+                <a href="#" class="block px-6 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600">Lowongan</a>
+                <a href="#" class="block px-6 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600">Pengaturan Akun</a>
+                <a href="#" class="block px-6 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600">Syarat & Kebijakan</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4 text-gray-700">Lowongan Pekerjaan</h2>
+                <form>
+                    <!-- Informasi Dasar -->
+                    <h3 class="text-lg font-semibold text-blue-600 mb-4 border-b pb-2">Informasi Dasar</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="judulPekerjaan" class="block text-gray-700 font-medium mb-1">Judul Pekerjaan</label>
+                            <input type="text" id="judulPekerjaan" placeholder="Masukkan judul pekerjaan" class="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="jenisPekerjaan" class="block text-gray-700 font-medium mb-1">Jenis Pekerjaan</label>
+                            <input type="text" id="jenisPekerjaan" placeholder="Masukkan jenis pekerjaan" class="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="alamatPenempatan" class="block text-gray-700 font-medium mb-1">Alamat Penempatan</label>
+                            <input type="text" id="alamatPenempatan" placeholder="Masukkan alamat penempatan" class="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="deskripsiPekerjaan" class="block text-gray-700 font-medium mb-1">Deskripsi Pekerjaan</label>
+                            <textarea id="deskripsiPekerjaan" rows="4" placeholder="Masukkan deskripsi pekerjaan" class="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 focus:outline-none"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="mt-6 text-right">
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 font-semibold">
+                            SIMPAN
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
