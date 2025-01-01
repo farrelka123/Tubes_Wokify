@@ -167,7 +167,6 @@ icon.addEventListener('click', function () {
     <div class="flex h-screen">
         <!-- Sidebar -->
         <aside class="w-1/4 bg-blue-500 text-white p-5">
-            <h2 class="text-2xl font-bold mb-6">WORKIFY</h2>
             <nav>
                 <ul class="space-y-4">
                     <li><a href="dashboard.php" class="block hover:text-gray-200">Beranda</a></li>
