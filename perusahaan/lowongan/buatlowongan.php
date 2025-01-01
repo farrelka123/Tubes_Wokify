@@ -8,7 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
-
 <header class="bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 shadow-lg">
     <div class="container mx-auto flex justify-between items-center px-6 py-4">
         <!-- Logo -->
@@ -48,17 +47,24 @@
                         <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center shadow-md">
                             <img src="../../asset/img/lisa.jpg" alt="Profile" class="w-10 h-10 rounded-full border-2 border-white">
                         </div>
-                        <!-- Username and Icon -->
-                        <span class="text-lg font-semibold text-white flex items-center space-x-1">
-                            <span>DELL</span>
-                            <!-- Small Icon next to the username -->
+                        <?php
+                            session_start();
+                            $id_akun = $_SESSION['id_akun']; 
+                            include '../../inc/koneksi.php';
+                            $sql = mysqli_query($koneksi, "SELECT nama FROM akun WHERE id_akun = '$id_akun'");
+                            $data = mysqli_fetch_array($sql);
+                            ?>
+                            <span class="text-lg font-semibold text-white flex items-center space-x-1">
+                                <span><?php echo htmlspecialchars($data['nama']); ?></span>
+                            </span>
+
                             <svg id="dropdown-icon" class="w-4 h-4 text-white transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l7-7 7 7" />
                             </svg>
                         </span>
                     </button>
                 
-                    <!-- Dropdown Menu -->
+  
                     <div id="profile-dropdown" class="hidden absolute right-0 mt-3 w-56 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-200">
                         <div class="flex flex-col">
                             <a href="profilsaya.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gradient-to-r from-blue-500 to-blue-400 hover:text-white transition">
@@ -72,6 +78,17 @@
                 </div>  
         </nav>
 </header>
+<script>
+document.getElementById('profile-toggle').addEventListener('click', function (event) {
+    const dropdown = document.getElementById('profile-dropdown');
+    dropdown.classList.toggle('hidden');
+    event.stopPropagation();
+});
+const icon = document.getElementById('dropdown-icon');
+icon.addEventListener('click', function () {
+    icon.classList.toggle('rotate-180');
+});
+</script>
 
 
     <div class="flex h-screen">
@@ -92,8 +109,12 @@
                 <h3 class="text-2xl font-semibold">Buat Lowongan Baru</h3>
                 <p class="text-gray-600">Lengkapi formulir di bawah untuk membuat lowongan baru.</p>
             </header>
-
+                                
             <form  method="POST" class="bg-white shadow rounded p-6 space-y-4">
+            <div>
+                    <label class="block font-medium text-gray-700">Nama pekerjaan</label>
+                    <input type="text" name="nama_pekerjaan" class="w-full border border-gray-300 rounded px-3 py-2">
+                </div>
                 <div>
                     <label class="block font-medium text-gray-700">Posisi</label>
                     <input type="text" name="posisi" class="w-full border border-gray-300 rounded px-3 py-2">
@@ -138,7 +159,7 @@
                     <label class="block font-medium text-gray-700">Deskripsi Pekerjaan</label>
                     <textarea name="deskripsi_pekerjaan" class="w-full border border-gray-300 rounded px-3 py-2" rows="4"></textarea>
                 </div>
-                <button type="submit" name="submit" class="w-fulldaftar" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Simpan Lowongan</button>
+                <button type="submit" name="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Simpan Lowongan</button>
             </form>
         </main>
     </div>
@@ -151,30 +172,31 @@ include("../../inc/koneksi.php");
       $posisi = $_POST['posisi'];
       $tglbuka = $_POST['tglbuka'];
       $tglttp = $_POST['tglttp'];
-      $almtperusahaan = $_POST['almteperusahaan'];
+      $almtperusahaan = $_POST['almtperusahaan'];
       $gaji = $_POST['gaji'];
       $jenis_kelamin = $_POST['jenis_kelamin'];
       $umur = $_POST['umur'];
       $tingkat_pendidikan = $_POST['tingkat_pendidikan'];
       $pengalaman_kerja = $_POST['pengalaman_kerja'];
       $deskripsi_pekerjaan = $_POST['deskripsi_pekerjaan'];
+      $nama_pekerjaan= $_POST['nama_pekerjaan'];
 
    
    // menginput data ke database
-   $sql = mysqli_query($koneksi,"INSERT into lamaran values('','','','$tglbuka','$tglttp','$almtperusahaan',$gaji,'dibuka',$posisi,'$jenis_kelamin','$umur','$tingkat_pendidikan','$pengalaman_kerja','$deskripsi_pekerjaan')");
+   $sql = mysqli_query($koneksi,"INSERT into lamaran values('','','','$tglbuka','$tglttp','$almtperusahaan','$gaji','dibuka','$posisi','$jenis_kelamin','$umur','$tingkat_pendidikan','$pengalaman_kerja','$deskripsi_pekerjaan','$nama_pekerjaan')");
    
 
    if ($sql) {
 		?>
 		<script type="text/javascript">
-			alert("DATA BERHARILAH DIBUAT");
+			alert("DATA BERHASIL DIBUAT");
 			window.location="lowongan_tabel.php";
 		</script>
 		<?php
    }else{
     ?>
 		<script type="text/javascript">
-			alert("AKUN GAGAL DIBUAT COBA GUNAKAN USERNAME LAIN");
+			alert("DATA GAGAL DITAMBAHKAN");
 			window.location="dashboard.php";
 		</script>
 		<?php

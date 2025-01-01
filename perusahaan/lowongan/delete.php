@@ -1,22 +1,17 @@
 <?php
-include "dbconfig.php"; // Pastikan file konfigurasi database disertakan
+include '../../inc/koneksi.php';
 
-// Periksa apakah ID telah dikirim melalui URL
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+$idloker = $_GET['idloker'];
 
-    // Query untuk menghapus lowongan berdasarkan ID
-    $query = "DELETE FROM lowongan WHERE id = $id";
+$sql = mysqli_query($koneksi, "DELETE FROM lamaran WHERE idloker = '$idloker'");
 
-    if (mysqli_query($conn, $query)) {
-        echo "Lowongan berhasil dihapus!";
-        // Redirect ke halaman tabel lowongan
-        header("Location: lowongan_tabel.php");
-        exit;
-    } else {
-        echo "Error: " . mysqli_error($conn);
-    }
-} else {
-    echo "ID lowongan tidak ditemukan!";
+if ($sql) {
+	?>
+	<script type="text/javascript">
+		alert("DATA BERHASIL DIHAPUS");
+		window.location = "lowongan_tabel.php";
+	</script>
+	<?php 
 }
-?>
+
+ ?>
